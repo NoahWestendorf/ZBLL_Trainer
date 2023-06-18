@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var TimerIsRunning = false
     @State var currentColor = Color(uiColor: .white)
     @State private var canTouchDown = true
+    @State var TimerWasRunning = false
     
     let timer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     
@@ -24,13 +25,32 @@ struct ContentView: View {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                    .onTapGesture {
-                        if (TimerIsRunning == false){
-                            TimerCount = 0
-                        }
-                        TimerIsRunning.toggle()
-                    }
-                
+                    .gesture(
+                        DragGesture(minimumDistance:0)
+                            .onChanged{ value in
+                                if canTouchDown{
+                                    if (TimerIsRunning == true){
+                                        TimerWasRunning = true
+                                        TimerIsRunning = false
+                                        
+                                    } else if(TimerIsRunning == false) {
+                                        TimerWasRunning = false
+                                        currentColor = Color(uiColor: .green)
+                                        TimerCount = 0
+                                    }
+                                }
+                                canTouchDown = false
+                            }
+                            .onEnded{ Value in
+                                if (TimerWasRunning == false){
+                                    TimerIsRunning = true
+                                } else {
+                                    TimerIsRunning = false
+                                }
+                                canTouchDown = true
+                                currentColor = Color(uiColor: .white)
+                            }
+                        )
                 VStack{
                     Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2") //future feature:tap on scramble and get description of the previous solves with it
                         .fontWeight(.bold)
@@ -38,7 +58,6 @@ struct ContentView: View {
                         .padding(.vertical, 40.0)
                     
                     Spacer()
-                    
                     
                     Text(String(format: "%.2f", TimerCount))
                         .onReceive(timer) { _ in
