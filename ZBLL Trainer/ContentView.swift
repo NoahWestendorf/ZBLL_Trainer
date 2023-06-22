@@ -36,7 +36,7 @@ struct ContentView: View {
                                     } else if(TimerIsRunning == false) {
                                         TimerWasRunning = false
                                         currentColor = Color(uiColor: .green)
-                                        TimerCount = 0
+                                        TimerCount = 2
                                     }
                                 }
                                 canTouchDown = false
