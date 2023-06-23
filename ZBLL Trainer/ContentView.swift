@@ -61,10 +61,16 @@ struct ContentView: View {
                             }
                         )
                 VStack{
-                    Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2") //future feature: tap on scramble and get description of the previous solves with it
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .padding(.vertical, 40.0)
+                    
+                    NavigationLink {
+                        ScrambleDescriptionView()
+                    } label: {
+                        Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .padding(.vertical, 40.0)
+                            .multilineTextAlignment(.leading)
+                    }
                     
                     Spacer()
                     
