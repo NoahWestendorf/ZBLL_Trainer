@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F9797A92A4626360011D986 /* ScrambleDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */; };
 		8FC61E4F2A26130C0061D954 /* ZBLL_TrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC61E4E2A26130C0061D954 /* ZBLL_TrainerApp.swift */; };
 		8FC61E512A26130C0061D954 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC61E502A26130C0061D954 /* ContentView.swift */; };
 		8FC61E532A26130D0061D954 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FC61E522A26130D0061D954 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleDescriptionView.swift; sourceTree = "<group>"; };
 		8FC61E4B2A26130C0061D954 /* ZBLL Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZBLL Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FC61E4E2A26130C0061D954 /* ZBLL_TrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBLL_TrainerApp.swift; sourceTree = "<group>"; };
 		8FC61E502A26130C0061D954 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC61E4E2A26130C0061D954 /* ZBLL_TrainerApp.swift */,
+				8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */,
 				8FC61E502A26130C0061D954 /* ContentView.swift */,
 				8FC61E522A26130D0061D954 /* Assets.xcassets */,
 				8FC61E542A26130D0061D954 /* Preview Content */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FC61E512A26130C0061D954 /* ContentView.swift in Sources */,
+				8F9797A92A4626360011D986 /* ScrambleDescriptionView.swift in Sources */,
 				8FC61E4F2A26130C0061D954 /* ZBLL_TrainerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
