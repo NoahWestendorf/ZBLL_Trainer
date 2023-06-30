@@ -17,49 +17,71 @@ struct ScrambleDescriptionView: View {
                 
                 VStack{
                     
-                    Text("Scramble information")
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.title)
-                        .fontWeight(.bold)
-                    
                     Spacer()
                     
-                    HStack{
-                        VStack{
-                            Text("Case:")
-                                .fontWeight(.bold)
-                                .frame(maxWidth: 120, alignment: .leading)
-                                .font(.title)
+                    VStack{
+                        Text("Scramble information")
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Text("Fperm")
+                            .fontWeight(.bold)
+                            .padding([.leading, .bottom])
+                            .frame(maxWidth: .infinity ,alignment: .leading)
+                        
+                        HStack{
+                            VStack{
+                                Text("Case:")
+                                    .fontWeight(.bold)
+                                    .font(.title)
+                        
+                                Image("pll-example-2")
+                            }
                             
-                            Image("pll-example-2")
+                            VStack{
+                                Text("Scramble:")
+                                    .font(.title)
+                                    .padding([.leading, .bottom])
+                                
+                                Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
+                                    .font(.title3)
+                            }
+                            .fontWeight(.bold)
                         }
-                        .background(Rectangle()
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.gray)
-                            .cornerRadius(15))
                         
-                        
-                        VStack{
-                            Text("Scramble:")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(.title)
-                                .padding([.leading, .bottom])
-                            
-                            Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
+                        HStack{
+                            Spacer()
+                            Text("Fastest Time")
                                 .font(.title3)
+                                .fontWeight(.bold)
+                            
+                            Spacer()
+                            
+                            Text("Average Time")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            Spacer()
                         }
-                        .fontWeight(.bold)
-                        .background(Rectangle()
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.gray)
-                            .cornerRadius(15))
+                        
+                        HStack(spacing: 50){
+                            Spacer()
+                            Text("0.98")
+                            Spacer()
+                            Text("1.35")
+                            Spacer()
+                        }
                     }
-                
-                    Spacer()
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Rectangle()
+                        .foregroundColor(.gray)
+                        .cornerRadius(15)
+                        .padding())
                     
+                    Spacer()
                 }
-                .foregroundColor(.white)
             }
         }
     }
