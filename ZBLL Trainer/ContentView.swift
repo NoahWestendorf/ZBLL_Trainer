@@ -31,9 +31,6 @@ struct ContentView: View {
                         DragGesture(minimumDistance:0)
                             .onChanged{ value in
                                 if canTouchDown{
-                                    
-                                    
-                                    
                                     if (TimerIsRunning == true){
                                         
                                         TimerWasRunning = true
@@ -59,7 +56,7 @@ struct ContentView: View {
                                 CurrentColor = Color(uiColor: .white)
                                 canTouchDown = true
                             }
-                        )
+                    )
                 VStack{
                     
                     NavigationLink {
@@ -88,7 +85,6 @@ struct ContentView: View {
                                 
                                 HeldDownTimerIsRunnning = false
                             }
-                            
                         }
                     
                     Text(String(format: "%.2f", TimerCount))
@@ -105,15 +101,120 @@ struct ContentView: View {
                         .font(.system(size: 50, weight: .bold))
                         .foregroundColor(CurrentColor)
                     
-                    
                     Spacer()
                     
                     HStack{
-                        VStack{
-                            Text("Previous scramble:")
+                        VStack (spacing: 10){
+                            
+                            Text("Previous Scramble:")
                                 .fontWeight(.bold)
-                            Image("pll-case-example")
+                            
+                            HStack{
+                                Rectangle()
+                                    .frame(width: 23, height: 10)
+                                    .padding(.bottom, -10)
+                                    //Some rectangles have negative padding, so the colors around the cube touch the yellow.
+                                    .foregroundColor(.orange)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 10)
+                                    .padding(.bottom, -10)
+                                    .foregroundColor(.orange)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 10)
+                                    .padding(.bottom, -10)
+                                    .foregroundColor(.red)
+                                
+                            }
+                            HStack{
+                                Rectangle()
+                                    .frame(width: 10, height: 23)
+                                    .padding(.trailing, -10)
+                                    .foregroundColor(.blue)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 10, height: 23)
+                                    .padding(.leading, -10)
+                                    .foregroundColor(.blue)
+                            }
+                            HStack{
+                                Rectangle()
+                                    .frame(width: 10, height: 23)
+                                    .padding(.trailing, -10)
+                                    .foregroundColor(.red)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 10, height: 23)
+                                    .padding(.leading, -10)
+                                    .foregroundColor(.blue)
+                                
+                            }
+                            HStack{
+                                Rectangle()
+                                    .frame(width: 10, height: 23)
+                                    .padding(.trailing, -10)
+                                    .foregroundColor(.red)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 23)
+                                    .foregroundColor(.yellow)
+                                
+                                Rectangle()
+                                    .frame(width: 10, height: 23)
+                                    .padding(.leading, -10)
+                                    .foregroundColor(.orange)
+                            }
+                            HStack{
+                                Rectangle()
+                                    .frame(width: 23, height: 10)
+                                    .padding(.top, -10)
+                                    .foregroundColor(.green)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 10)
+                                    .padding(.top, -10)
+                                    .foregroundColor(.green)
+                                
+                                Rectangle()
+                                    .frame(width: 23, height: 10)
+                                    .padding(.top, -10)
+                                    .foregroundColor(.green)
+                            }
                         }
+                        //Draws the Cube, with way too many rectangles
                         
                         Spacer()
                         
