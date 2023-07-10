@@ -20,7 +20,40 @@ struct ContentView: View {
     let timer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     let HeldDownTimer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     
+    func drawOllRectangle(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 23, height: 23)
+            .foregroundColor(colorOfRectangle)
+    }
     
+    func drawPllRectangleTop(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 23, height: 10)
+            .padding(.bottom, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleBottom(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 23, height: 10)
+            .padding(.top, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleLeft(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 10, height: 23)
+            .padding(.trailing, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleRight(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 10, height: 23)
+            .padding(.leading, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    //Functions for drawing every type of rectangle
     var body: some View {
         
         NavigationView {
@@ -110,122 +143,128 @@ struct ContentView: View {
                                 .fontWeight(.bold)
                             
                             HStack{
-                                Rectangle()
-                                    .frame(width: 23, height: 10)
-                                    .padding(.bottom, -10)
-                                    //Some rectangles have negative padding, so the colors around the cube touch the yellow.
-                                    .foregroundColor(.orange)
+                                drawPllRectangleTop(colorOfRectangle: .green)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 10)
-                                    .padding(.bottom, -10)
-                                    .foregroundColor(.orange)
+                                drawPllRectangleTop(colorOfRectangle: .green)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 10)
-                                    .padding(.bottom, -10)
-                                    .foregroundColor(.red)
+                                drawPllRectangleTop(colorOfRectangle: .blue)
                                 
                             }
                             HStack{
-                                Rectangle()
-                                    .frame(width: 10, height: 23)
-                                    .padding(.trailing, -10)
-                                    .foregroundColor(.blue)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                Rectangle()
-                                    .frame(width: 10, height: 23)
-                                    .padding(.leading, -10)
-                                    .foregroundColor(.blue)
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .orange)
                             }
                             HStack{
-                                Rectangle()
-                                    .frame(width: 10, height: 23)
-                                    .padding(.trailing, -10)
-                                    .foregroundColor(.red)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                Rectangle()
-                                    .frame(width: 10, height: 23)
-                                    .padding(.leading, -10)
-                                    .foregroundColor(.blue)
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .orange)
                                 
                             }
                             HStack{
-                                Rectangle()
-                                    .frame(width: 10, height: 23)
-                                    .padding(.trailing, -10)
-                                    .foregroundColor(.red)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 23)
-                                    .foregroundColor(.yellow)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                Rectangle()
-                                    .frame(width: 10, height: 23)
-                                    .padding(.leading, -10)
-                                    .foregroundColor(.orange)
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .green)
                             }
                             HStack{
-                                Rectangle()
-                                    .frame(width: 23, height: 10)
-                                    .padding(.top, -10)
-                                    .foregroundColor(.green)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 10)
-                                    .padding(.top, -10)
-                                    .foregroundColor(.green)
+                                drawPllRectangleBottom(colorOfRectangle: .red)
                                 
-                                Rectangle()
-                                    .frame(width: 23, height: 10)
-                                    .padding(.top, -10)
-                                    .foregroundColor(.green)
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
                             }
                         }
                         //Draws the Cube, with way too many rectangles
                         
                         Spacer()
                         
-                        VStack{
-                            Text("Next scramble:")
+                        VStack (spacing: 10){
+                            
+                            Text("Upcoming Scramble:")
                                 .fontWeight(.bold)
-                            Image("pll-example-2")
+                            
+                            HStack{
+                                drawPllRectangleTop(colorOfRectangle: .orange)
+                                
+                                drawPllRectangleTop(colorOfRectangle: .green)
+                                
+                                drawPllRectangleTop(colorOfRectangle: .green)
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .red)
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .orange)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .red)
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .orange)
+                            }
+                            HStack{
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .blue)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .green)
+                                
+                            }
                         }
                     }
                 }
                 .foregroundColor(.white)
+                .padding()
             }
         }
     }
