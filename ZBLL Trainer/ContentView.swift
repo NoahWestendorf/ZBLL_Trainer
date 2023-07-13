@@ -57,56 +57,24 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-            ZStack{
+            ZStack {
                 Color.black
                     .ignoresSafeArea()
-                    //ignoresSafeArea is here because, the other Color.black would make the DragGesture ignore the safe area as well.
-                ZStack {
-                    Color.black
-                        .gesture(
-                            DragGesture(minimumDistance:0)
-                                .onChanged{ value in
-                                    if canTouchDown{
-                                        if (TimerIsRunning == true){
-                                            
-                                            TimerWasRunning = true
-                                            TimerIsRunning = false
-                                            
-                                        } else if(TimerIsRunning == false) {
-                                            HeldDownTimerIsRunnning = true
-                                            TimerWasRunning = false
-                                            TimerCount = 0
-                                        }
-                                    }
-                                    canTouchDown = false
-                                    
-                                }
-                                .onEnded{ Value in
-                                    if (TimerWasRunning == false && CurrentColor == Color(uiColor: .green)){
-                                        TimerIsRunning = true
-                                    } else {
-                                        TimerIsRunning = false
-                                    }
-                                    HeldDownTimerCount = 0
-                                    HeldDownTimerIsRunnning = false
-                                    CurrentColor = Color(uiColor: .white)
-                                    canTouchDown = true
-                                }
-                        )
+                    
+                VStack{
+                    
+                    NavigationLink {
+                        ScrambleDescriptionView()
+                    } label: {
+                        Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .padding(.vertical, 40.0)
+                            .multilineTextAlignment(.leading)
+                    }
+                    
                     VStack{
-                        
-                        NavigationLink {
-                            ScrambleDescriptionView()
-                        } label: {
-                            Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
-                                .fontWeight(.bold)
-                                .font(.title)
-                                .padding(.vertical, 40.0)
-                                .multilineTextAlignment(.leading)
-                        }
-                        
                         Spacer()
-                        
                             .onReceive(HeldDownTimer) { _ in
                                 if (HeldDownTimerIsRunnning) {
                                     
@@ -123,155 +91,188 @@ struct ContentView: View {
                                 }
                             }
                         
-                        Text(String(format: "%.2f", TimerCount))
-                            .onReceive(timer) { _ in
-                                if (TimerIsRunning){
-                                    
-                                    TimerCount += 0.01
-                                    
+                        ZStack{
+                            Color.black
+                            
+                            Text(String(format: "%.2f", TimerCount))
+                                .onReceive(timer) { _ in
+                                    if (TimerIsRunning){
+                                        
+                                        TimerCount += 0.01
+                                        
+                                    } else {
+                                        
+                                        TimerIsRunning = false
+                                    }
+                                }
+                                .font(.system(size: 50, weight: .bold))
+                                .foregroundColor(CurrentColor)
+                        }
+                        Spacer()
+                    }
+                    .gesture(
+                        DragGesture(minimumDistance:0)
+                            .onChanged{ value in
+                                if canTouchDown{
+                                    if (TimerIsRunning == true){
+                                        
+                                        TimerWasRunning = true
+                                        TimerIsRunning = false
+                                        
+                                    } else if(TimerIsRunning == false) {
+                                        HeldDownTimerIsRunnning = true
+                                        TimerWasRunning = false
+                                        TimerCount = 0
+                                    }
+                                }
+                                canTouchDown = false
+                                
+                            }
+                            .onEnded{ Value in
+                                if (TimerWasRunning == false && CurrentColor == Color(uiColor: .green)){
+                                    TimerIsRunning = true
                                 } else {
-                                    
                                     TimerIsRunning = false
                                 }
+                                HeldDownTimerCount = 0
+                                HeldDownTimerIsRunnning = false
+                                CurrentColor = Color(uiColor: .white)
+                                canTouchDown = true
                             }
-                            .font(.system(size: 50, weight: .bold))
-                            .foregroundColor(CurrentColor)
+                    )
+                    HStack{
+                        VStack (spacing: 10){
+                            
+                            Text("Previous Scramble:")
+                                .fontWeight(.bold)
+                            
+                            HStack{
+                                drawPllRectangleTop(colorOfRectangle: .green)
+                                
+                                drawPllRectangleTop(colorOfRectangle: .green)
+                                
+                                drawPllRectangleTop(colorOfRectangle: .blue)
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .orange)
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .orange)
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .green)
+                            }
+                            HStack{
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
+                            }
+                        }
+                        //Draws the Cube, with way too many rectangles
                         
                         Spacer()
                         
-                        HStack{
-                            VStack (spacing: 10){
+                        VStack (spacing: 10){
+                            
+                            Text("Upcoming Scramble:")
+                                .fontWeight(.bold)
+                            
+                            HStack{
+                                drawPllRectangleTop(colorOfRectangle: .orange)
                                 
-                                Text("Previous Scramble:")
-                                    .fontWeight(.bold)
+                                drawPllRectangleTop(colorOfRectangle: .green)
                                 
-                                HStack{
-                                    drawPllRectangleTop(colorOfRectangle: .green)
-                                    
-                                    drawPllRectangleTop(colorOfRectangle: .green)
-                                    
-                                    drawPllRectangleTop(colorOfRectangle: .blue)
-                                    
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleLeft(colorOfRectangle: .blue)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawPllRectangleRight(colorOfRectangle: .orange)
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleLeft(colorOfRectangle: .blue)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawPllRectangleRight(colorOfRectangle: .orange)
-                                    
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleLeft(colorOfRectangle: .blue)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawPllRectangleRight(colorOfRectangle: .green)
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleBottom(colorOfRectangle: .red)
-                                    
-                                    drawPllRectangleBottom(colorOfRectangle: .red)
-                                    
-                                    drawPllRectangleBottom(colorOfRectangle: .red)
-                                    
-                                }
+                                drawPllRectangleTop(colorOfRectangle: .green)
+                                
                             }
-                            //Draws the Cube, with way too many rectangles
-                            
-                            Spacer()
-                            
-                            VStack (spacing: 10){
+                            HStack{
                                 
-                                Text("Upcoming Scramble:")
-                                    .fontWeight(.bold)
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
                                 
-                                HStack{
-                                    drawPllRectangleTop(colorOfRectangle: .orange)
-                                    
-                                    drawPllRectangleTop(colorOfRectangle: .green)
-                                    
-                                    drawPllRectangleTop(colorOfRectangle: .green)
-                                    
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleLeft(colorOfRectangle: .blue)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawPllRectangleRight(colorOfRectangle: .red)
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleLeft(colorOfRectangle: .orange)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawPllRectangleRight(colorOfRectangle: .red)
-                                    
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleLeft(colorOfRectangle: .blue)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawOllRectangle(colorOfRectangle: .yellow)
-                                    
-                                    drawPllRectangleRight(colorOfRectangle: .orange)
-                                }
-                                HStack{
-                                    
-                                    drawPllRectangleBottom(colorOfRectangle: .red)
-                                    
-                                    drawPllRectangleBottom(colorOfRectangle: .blue)
-                                    
-                                    drawPllRectangleBottom(colorOfRectangle: .green)
-                                    
-                                }
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .red)
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .orange)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .red)
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: .orange)
+                            }
+                            HStack{
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .blue)
+                                
+                                drawPllRectangleBottom(colorOfRectangle: .green)
+                                
                             }
                         }
                     }
-                    .foregroundColor(.white)
-                    .padding()
                 }
+                .foregroundColor(.white)
+                .padding()
             }
         }
     }
+    
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
