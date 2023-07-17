@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var TimerCount = 0.0
-    @State var TimerIsRunning = false
-    @State var HeldDownTimerCount = 0.0
-    @State var HeldDownTimerIsRunnning = false
-    @State var CurrentColor = Color(uiColor: .white)
+    @State var timerCount = 0.0
+    @State var timerIsRunning = false
+    @State var heldDownTimerCount = 0.0
+    @State var heldDownTimerIsRunnning = false
+    @State var timerColor = Color(uiColor: .white)
     @State private var canTouchDown = true
-    @State var TimerWasRunning = false
+    @State var timerWasRunning = false
+    @State var previousPllCase = pllCases[20]
+    @State var currentPllCase = pllCases[0]
     
     let timer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     let HeldDownTimer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
@@ -64,9 +66,9 @@ struct ContentView: View {
                 VStack{
                     
                     NavigationLink {
-                        ScrambleDescriptionView()
+                        ScrambleDescriptionView(pllCase: $currentPllCase)
                     } label: {
-                        Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
+                        Text(currentPllCase.scramble)
                             .fontWeight(.bold)
                             .font(.title)
                             .padding(.vertical, 40.0)
@@ -76,37 +78,37 @@ struct ContentView: View {
                     VStack{
                         Spacer()
                             .onReceive(HeldDownTimer) { _ in
-                                if (HeldDownTimerIsRunnning) {
+                                if (heldDownTimerIsRunnning) {
                                     
-                                    HeldDownTimerCount += 0.01
+                                    heldDownTimerCount += 0.01
                                     
-                                    if (HeldDownTimerCount <= 0.5) {
-                                        CurrentColor = Color(uiColor: .red)
+                                    if (heldDownTimerCount <= 0.5) {
+                                        timerColor = Color(uiColor: .red)
                                     } else {
-                                        CurrentColor = Color(uiColor: .green)
+                                        timerColor = Color(uiColor: .green)
                                     }
                                 } else {
                                     
-                                    HeldDownTimerIsRunnning = false
+                                    heldDownTimerIsRunnning = false
                                 }
                             }
                         
                         ZStack{
                             Color.black
                             
-                            Text(String(format: "%.2f", TimerCount))
+                            Text(String(format: "%.2f", timerCount))
                                 .onReceive(timer) { _ in
-                                    if (TimerIsRunning){
+                                    if (timerIsRunning){
                                         
-                                        TimerCount += 0.01
+                                        timerCount += 0.01
                                         
                                     } else {
                                         
-                                        TimerIsRunning = false
+                                        timerIsRunning = false
                                     }
                                 }
                                 .font(.system(size: 50, weight: .bold))
-                                .foregroundColor(CurrentColor)
+                                .foregroundColor(timerColor)
                         }
                         Spacer()
                     }
@@ -114,74 +116,51 @@ struct ContentView: View {
                         DragGesture(minimumDistance:0)
                             .onChanged{ value in
                                 if canTouchDown{
-                                    if (TimerIsRunning == true){
+                                    if (timerIsRunning == true){
+                                        previousPllCase = currentPllCase
+                                        currentPllCase = pllCases.randomElement()!
+                                        print(currentPllCase.name)
                                         
-                                        TimerWasRunning = true
-                                        TimerIsRunning = false
-                                        
-                                    } else if(TimerIsRunning == false) {
-                                        HeldDownTimerIsRunnning = true
-                                        TimerWasRunning = false
-                                        TimerCount = 0
+                                        timerWasRunning = true
+                                        timerIsRunning = false
+                                    } else if(timerIsRunning == false) {
+                                        heldDownTimerIsRunnning = true
+                                        timerWasRunning = false
+                                        timerCount = 0
                                     }
                                 }
                                 canTouchDown = false
                                 
                             }
                             .onEnded{ Value in
-                                if (TimerWasRunning == false && CurrentColor == Color(uiColor: .green)){
-                                    TimerIsRunning = true
+                                if (timerWasRunning == false && timerColor == Color(uiColor: .green)){
+                                    timerIsRunning = true
                                 } else {
-                                    TimerIsRunning = false
+                                    timerIsRunning = false
                                 }
-                                HeldDownTimerCount = 0
-                                HeldDownTimerIsRunnning = false
-                                CurrentColor = Color(uiColor: .white)
+                                heldDownTimerCount = 0
+                                heldDownTimerIsRunnning = false
+                                timerColor = Color(uiColor: .white)
                                 canTouchDown = true
                             }
                     )
                     HStack{
                         VStack (spacing: 10){
                             
-                            Text("Previous Scramble:")
+                            Text("Previous scramble:")
                                 .fontWeight(.bold)
                             
                             HStack{
-                                drawPllRectangleTop(colorOfRectangle: .green)
+                                drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[0])
                                 
-                                drawPllRectangleTop(colorOfRectangle: .green)
+                                drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[1])
                                 
-                                drawPllRectangleTop(colorOfRectangle: .blue)
-                                
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: .blue)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: .orange)
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: .blue)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: .orange)
+                                drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[2])
                                 
                             }
                             HStack{
                                 
-                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[3])
                                 
                                 drawOllRectangle(colorOfRectangle: .yellow)
                                 
@@ -189,15 +168,40 @@ struct ContentView: View {
                                 
                                 drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                drawPllRectangleRight(colorOfRectangle: .green)
+                                drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[4])
                             }
                             HStack{
                                 
-                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[5])
                                 
-                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[6])
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[7])
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[8])
+                            }
+                            HStack{
+                                
+                                drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[9])
+                                
+                                drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[10])
+                                
+                                drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[11])
                                 
                             }
                         }
@@ -207,45 +211,20 @@ struct ContentView: View {
                         
                         VStack (spacing: 10){
                             
-                            Text("Upcoming Scramble:")
+                            Text("Current scramble:")
                                 .fontWeight(.bold)
                             
                             HStack{
-                                drawPllRectangleTop(colorOfRectangle: .orange)
+                                drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[0])
                                 
-                                drawPllRectangleTop(colorOfRectangle: .green)
+                                drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[1])
                                 
-                                drawPllRectangleTop(colorOfRectangle: .green)
-                                
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: .blue)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: .red)
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: .orange)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: .red)
+                                drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[2])
                                 
                             }
                             HStack{
                                 
-                                drawPllRectangleLeft(colorOfRectangle: .blue)
+                                drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[3])
                                 
                                 drawOllRectangle(colorOfRectangle: .yellow)
                                 
@@ -253,15 +232,40 @@ struct ContentView: View {
                                 
                                 drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                drawPllRectangleRight(colorOfRectangle: .orange)
+                                drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[4])
                             }
                             HStack{
                                 
-                                drawPllRectangleBottom(colorOfRectangle: .red)
+                                drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[5])
                                 
-                                drawPllRectangleBottom(colorOfRectangle: .blue)
+                                drawOllRectangle(colorOfRectangle: .yellow)
                                 
-                                drawPllRectangleBottom(colorOfRectangle: .green)
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[6])
+                                
+                            }
+                            HStack{
+                                
+                                drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[7])
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawOllRectangle(colorOfRectangle: .yellow)
+                                
+                                drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[8])
+                            }
+                            HStack{
+                                
+                                drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[9])
+                                
+                                drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[10])
+                                
+                                drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[11])
                                 
                             }
                         }

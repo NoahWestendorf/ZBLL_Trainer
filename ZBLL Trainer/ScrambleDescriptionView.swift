@@ -8,6 +8,42 @@
 import SwiftUI
 
 struct ScrambleDescriptionView: View {
+    
+    @Binding var pllCase: PllCase
+    
+    func drawOllRectangle(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 23, height: 23)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleTop(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 23, height: 10)
+            .padding(.bottom, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleBottom(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 23, height: 10)
+            .padding(.top, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleLeft(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 10, height: 23)
+            .padding(.trailing, -10)
+            .foregroundColor(colorOfRectangle)
+    }
+    
+    func drawPllRectangleRight(colorOfRectangle: Color) -> some View {
+        Rectangle()
+            .frame(width: 10, height: 23)
+            .padding(.leading, -10)
+            .foregroundColor(colorOfRectangle)
+    }
     var body: some View {
         NavigationView{
             ZStack{
@@ -26,7 +62,7 @@ struct ScrambleDescriptionView: View {
                             .font(.title)
                             .fontWeight(.bold)
                         
-                        Text("Ja perm")
+                        Text(pllCase.name)
                             .fontWeight(.bold)
                             .padding([.leading, .bottom])
                             .frame(maxWidth: .infinity ,alignment: .leading)
@@ -40,107 +76,57 @@ struct ScrambleDescriptionView: View {
                                 VStack (spacing: 10){
                                     
                                     HStack{
-                                        Rectangle()
-                                            .frame(width: 23, height: 10)
-                                            .padding(.bottom, -10)
-                                            .foregroundColor(.orange)
+                                        drawPllRectangleTop(colorOfRectangle: pllCase.colors[0])
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 10)
-                                            .padding(.bottom, -10)
-                                            .foregroundColor(.orange)
+                                        drawPllRectangleTop(colorOfRectangle: pllCase.colors[1])
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 10)
-                                            .padding(.bottom, -10)
-                                            .foregroundColor(.red)
+                                        drawPllRectangleTop(colorOfRectangle: pllCase.colors[2])
                                         
                                     }
                                     HStack{
-                                        Rectangle()
-                                            .frame(width: 10, height: 23)
-                                            .padding(.trailing, -10)
-                                            .foregroundColor(.blue)
+                                        drawPllRectangleLeft(colorOfRectangle: pllCase.colors[3])
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
                                         
-                                        Rectangle()
-                                            .frame(width: 10, height: 23)
-                                            .padding(.leading, -10)
-                                            .foregroundColor(.blue)
-                                    }
-                                    HStack{
-                                        Rectangle()
-                                            .frame(width: 10, height: 23)
-                                            .padding(.trailing, -10)
-                                            .foregroundColor(.red)
-                                        
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
-                                        
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
-                                        
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
-                                        
-                                        Rectangle()
-                                            .frame(width: 10, height: 23)
-                                            .padding(.leading, -10)
-                                            .foregroundColor(.blue)
+                                        drawPllRectangleRight(colorOfRectangle: pllCase.colors[4])
                                         
                                     }
                                     HStack{
-                                        Rectangle()
-                                            .frame(width: 10, height: 23)
-                                            .padding(.trailing, -10)
-                                            .foregroundColor(.red)
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
+                                        drawPllRectangleLeft(colorOfRectangle: pllCase.colors[5])
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 23)
-                                            .foregroundColor(.yellow)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
                                         
-                                        Rectangle()
-                                            .frame(width: 10, height: 23)
-                                            .padding(.leading, -10)
-                                            .foregroundColor(.orange)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
+                                        
+                                        drawPllRectangleRight(colorOfRectangle: pllCase.colors[6])
+                                        
                                     }
                                     HStack{
-                                        Rectangle()
-                                            .frame(width: 23, height: 10)
-                                            .padding(.top, -10)
-                                            .foregroundColor(.green)
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 10)
-                                            .padding(.top, -10)
-                                            .foregroundColor(.green)
+                                        drawPllRectangleLeft(colorOfRectangle: pllCase.colors[7])
                                         
-                                        Rectangle()
-                                            .frame(width: 23, height: 10)
-                                            .padding(.top, -10)
-                                            .foregroundColor(.green)
+                                        drawOllRectangle(colorOfRectangle: .yellow)
+                                        
+                                        drawOllRectangle(colorOfRectangle: .yellow)
+                                        
+                                        drawOllRectangle(colorOfRectangle: .yellow)
+                                        
+                                        drawPllRectangleRight(colorOfRectangle: pllCase.colors[8])
+                                    }
+                                    HStack{
+                                        
+                                        drawPllRectangleBottom(colorOfRectangle: pllCase.colors[9])
+                                        
+                                        drawPllRectangleBottom(colorOfRectangle: pllCase.colors[10])
+                                        
+                                        drawPllRectangleBottom(colorOfRectangle: pllCase.colors[11])
                                     }
                                 }
                                 .padding()
@@ -151,32 +137,10 @@ struct ScrambleDescriptionView: View {
                                     .font(.title)
                                     .padding([.leading, .bottom])
                                 
-                                Text("R2 F' B' L2 F' B D' L2 F2 U L2 U' R2 U L2 B2")
+                                Text(pllCase.scramble)
                                     .font(.title3)
                             }
                             .fontWeight(.bold)
-                        }
-                        
-                        HStack{
-                            Spacer()
-                            Text("Fastest Time")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                            
-                            Spacer()
-                            
-                            Text("Average Time")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                            Spacer()
-                        }
-                        
-                        HStack(spacing: 50){
-                            Spacer()
-                            Text("0.98")
-                            Spacer()
-                            Text("1.35")
-                            Spacer()
                         }
                     }
                     .foregroundColor(.white)
@@ -193,7 +157,17 @@ struct ScrambleDescriptionView: View {
     }
 }
 struct ScrambleDescriptionView_Previews: PreviewProvider {
+    @State static var pllCase = PllCase(
+        name: "skip",
+        scramble: "U U'",
+        colors: [.blue, .blue, .blue,
+                 .red, .orange,
+                 .red, .orange,
+                 .red, .orange,
+                 .green, .green, .green]
+    )
+
     static var previews: some View {
-        ScrambleDescriptionView()
+        ScrambleDescriptionView(pllCase: $pllCase)
     }
 }
