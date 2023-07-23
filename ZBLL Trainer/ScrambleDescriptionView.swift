@@ -44,6 +44,7 @@ struct ScrambleDescriptionView: View {
             .padding(.leading, -10)
             .foregroundColor(colorOfRectangle)
     }
+    
     var body: some View {
         NavigationView{
             ZStack{
