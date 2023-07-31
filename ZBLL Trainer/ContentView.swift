@@ -58,12 +58,22 @@ struct ContentView: View {
     //Functions for drawing every type of rectangle
     var body: some View {
         
-        NavigationView {
+        NavigationView{
             ZStack {
                 Color.black
                     .ignoresSafeArea()
                     
-                VStack{
+                VStack(alignment: .trailing) {
+                    
+                    NavigationLink {
+                        PllCasesListView()
+                    } label: {
+                        Text("Select cases:")
+                        Image(systemName: "checkmark.circle")
+                            
+                    }
+                    .padding(.bottom, -5)
+                    .fontWeight(.bold)
                     
                     NavigationLink {
                         ScrambleDescriptionView(pllCase: $currentPllCase)
@@ -71,7 +81,7 @@ struct ContentView: View {
                         Text(currentPllCase.scramble)
                             .fontWeight(.bold)
                             .font(.title)
-                            .padding(.vertical, 40.0)
+                            .padding([.top])
                             .multilineTextAlignment(.leading)
                     }
                     
@@ -82,7 +92,7 @@ struct ContentView: View {
                                     
                                     heldDownTimerCount += 0.01
                                     
-                                    if (heldDownTimerCount <= 0.5) {
+                                    if (heldDownTimerCount <= 0.25) {
                                         timerColor = Color(uiColor: .red)
                                     } else {
                                         timerColor = Color(uiColor: .green)
@@ -126,7 +136,6 @@ struct ContentView: View {
                                     } else if(timerIsRunning == false) {
                                         heldDownTimerIsRunnning = true
                                         timerWasRunning = false
-                                        timerCount = 0
                                     }
                                 }
                                 canTouchDown = false
@@ -134,6 +143,7 @@ struct ContentView: View {
                             }
                             .onEnded{ Value in
                                 if (timerWasRunning == false && timerColor == Color(uiColor: .green)){
+                                    timerCount = 0
                                     timerIsRunning = true
                                 } else {
                                     timerIsRunning = false
@@ -270,9 +280,9 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .padding()
                 }
                 .foregroundColor(.white)
-                .padding()
             }
         }
     }
