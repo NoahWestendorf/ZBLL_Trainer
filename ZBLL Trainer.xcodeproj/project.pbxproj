@@ -38,6 +38,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F35BF672A7C35CE001251C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FC61E502A26130C0061D954 /* ContentView.swift */,
+				8F32AA462A6AB27A002B24A8 /* PllCasesListView.swift */,
+				8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8F35BF682A7C371C001251C4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8F9B461D2A6522F300BE6196 /* PllCase.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		8FC61E422A26130C0061D954 = {
 			isa = PBXGroup;
 			children = (
@@ -57,11 +75,9 @@
 		8FC61E4D2A26130C0061D954 /* ZBLL Trainer */ = {
 			isa = PBXGroup;
 			children = (
-				8F9B461D2A6522F300BE6196 /* PllCase.swift */,
 				8FC61E4E2A26130C0061D954 /* ZBLL_TrainerApp.swift */,
-				8F32AA462A6AB27A002B24A8 /* PllCasesListView.swift */,
-				8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */,
-				8FC61E502A26130C0061D954 /* ContentView.swift */,
+				8F35BF672A7C35CE001251C4 /* Views */,
+				8F35BF682A7C371C001251C4 /* Data */,
 				8FC61E522A26130D0061D954 /* Assets.xcassets */,
 				8FC61E542A26130D0061D954 /* Preview Content */,
 			);

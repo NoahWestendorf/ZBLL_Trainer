@@ -62,7 +62,7 @@ struct ContentView: View {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                    
+                
                 VStack(alignment: .trailing) {
                     
                     NavigationLink {
@@ -70,7 +70,7 @@ struct ContentView: View {
                     } label: {
                         Text("Select cases:")
                         Image(systemName: "checkmark.circle")
-                            
+                        
                     }
                     .padding(.bottom, -5)
                     .fontWeight(.bold)
@@ -286,11 +286,10 @@ struct ContentView: View {
             }
         }
     }
-    
+}
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView()
         }
     }
-}
