@@ -22,40 +22,6 @@ struct ContentView: View {
     let timer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     let HeldDownTimer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     
-    func drawOllRectangle(colorOfRectangle: Color) -> some View {
-        Rectangle()
-            .frame(width: 23, height: 23)
-            .foregroundColor(colorOfRectangle)
-    }
-    
-    func drawPllRectangleTop(colorOfRectangle: Color) -> some View {
-        Rectangle()
-            .frame(width: 23, height: 10)
-            .padding(.bottom, -10)
-            .foregroundColor(colorOfRectangle)
-    }
-    
-    func drawPllRectangleBottom(colorOfRectangle: Color) -> some View {
-        Rectangle()
-            .frame(width: 23, height: 10)
-            .padding(.top, -10)
-            .foregroundColor(colorOfRectangle)
-    }
-    
-    func drawPllRectangleLeft(colorOfRectangle: Color) -> some View {
-        Rectangle()
-            .frame(width: 10, height: 23)
-            .padding(.trailing, -10)
-            .foregroundColor(colorOfRectangle)
-    }
-    
-    func drawPllRectangleRight(colorOfRectangle: Color) -> some View {
-        Rectangle()
-            .frame(width: 10, height: 23)
-            .padding(.leading, -10)
-            .foregroundColor(colorOfRectangle)
-    }
-    //Functions for drawing every type of rectangle
     var body: some View {
         
         NavigationView{
