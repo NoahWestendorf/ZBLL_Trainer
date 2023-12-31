@@ -8,15 +8,17 @@
 //import Foundation
 import SwiftUI
 
-class PllCase{
+class PllCase: Identifiable{
     @Published var name: String
     @Published var scramble: String
     @Published var colors: [Color]
+    @Published var isSelected: Bool
     
-    init(name: String, scramble: String, colors: [Color]) {
+    init(name: String, scramble: String, colors: [Color], isSelected: Bool) {
         self.name = name
         self.scramble = scramble
         self.colors = colors
+        self.isSelected = isSelected
     }
 }
 
@@ -28,7 +30,8 @@ let pllCases = [
                  .red, .green,
                  .red, .orange,
                  .orange, .green,
-                 .blue, .green, .red]
+                 .blue, .green, .red],
+        isSelected: true
     ),
     PllCase(
         name: "AbPerm",
@@ -37,7 +40,8 @@ let pllCases = [
                  .green, .green,
                  .green, .blue,
                  .orange, .red,
-                 .blue, .orange, .blue]
+                 .blue, .orange, .blue],
+        isSelected: true
     ),
     PllCase(
         name: "FPerm",
@@ -46,7 +50,8 @@ let pllCases = [
                  .green, .orange,
                  .red, .orange,
                  .blue, .orange,
-                 .red, .blue, .green]
+                 .red, .blue, .green],
+        isSelected: true
     ),
     PllCase(
         name: "GaPerm",
@@ -55,7 +60,8 @@ let pllCases = [
                  .blue, .blue,
                  .orange, .blue,
                  .red, .orange,
-                 .green, .red, .green]
+                 .green, .red, .green],
+        isSelected: true
     ),
     PllCase(
         name: "GbPerm",
@@ -64,7 +70,8 @@ let pllCases = [
                  .blue, .blue,
                  .green, .red,
                  .red, .orange,
-                 .green, .blue, .green]
+                 .green, .blue, .green],
+        isSelected: true
     ),
     PllCase(
         name: "GcPerm",
@@ -73,7 +80,8 @@ let pllCases = [
                  .green, .green,
                  .green, .orange,
                  .orange, .red,
-                 .blue, .red, .blue]
+                 .blue, .red, .blue],
+        isSelected: true
     ),
     PllCase(
         name: "GdPerm",
@@ -82,7 +90,8 @@ let pllCases = [
                  .blue, .blue,
                  .orange, .green,
                  .red, .orange,
-                 .green, .blue, .green]
+                 .green, .blue, .green],
+        isSelected: true
     ),
     PllCase(
         name: "JaPerm",
@@ -91,7 +100,8 @@ let pllCases = [
                  .blue, .blue,
                  .blue, .orange,
                  .red, .orange,
-                 .green, .green, .green]
+                 .green, .green, .green],
+        isSelected: true
     ),
     PllCase(
         name: "JbPerm",
@@ -100,7 +110,8 @@ let pllCases = [
                  .blue, .red,
                  .blue, .red,
                  .blue, .orange,
-                 .red, .green, .green]
+                 .red, .green, .green],
+        isSelected: true
     ),
     PllCase(
         name: "RaPerm",
@@ -109,7 +120,8 @@ let pllCases = [
                  .red, .green,
                  .blue, .orange,
                  .red, .blue,
-                 .green, .green, .orange]
+                 .green, .green, .orange],
+        isSelected: true
     ),
     PllCase(
         name: "RbPerm",
@@ -118,7 +130,8 @@ let pllCases = [
                  .orange, .orange,
                  .blue, .red,
                  .blue, .green,
-                 .red, .green, .red]
+                 .red, .green, .red],
+        isSelected: true
     ),
     PllCase(
         name: "TPerm",
@@ -127,7 +140,8 @@ let pllCases = [
                  .blue, .green,
                  .blue, .green,
                  .red, .red,
-                 .green, .orange, .blue]
+                 .green, .orange, .blue],
+        isSelected: true
     ),
     PllCase(
         name: "EPerm",
@@ -136,7 +150,8 @@ let pllCases = [
                  .green, .green,
                  .orange, .red,
                  .blue, .blue,
-                 .red, .blue, .orange]
+                 .red, .blue, .orange],
+        isSelected: true
     ),
     PllCase(
         name: "NaPerm",
@@ -145,7 +160,8 @@ let pllCases = [
                  .green, .green,
                  .blue, .green,
                  .blue, .blue,
-                 .red, .orange, .orange]
+                 .red, .orange, .orange],
+        isSelected: true
     ),
     PllCase(
         name: "NbPerm",
@@ -154,7 +170,8 @@ let pllCases = [
                  .red, .red,
                  .red, .orange,
                  .orange, .orange,
-                 .blue, .blue, .green]
+                 .blue, .blue, .green],
+        isSelected: true
     ),
     PllCase(
         name: "VPerm",
@@ -163,7 +180,8 @@ let pllCases = [
                  .blue, .blue,
                  .blue, .red,
                  .green, .green,
-                 .orange, .green, .red]
+                 .orange, .green, .red],
+        isSelected: true
     ),
     PllCase(
         name: "YPerm",
@@ -172,7 +190,8 @@ let pllCases = [
                  .green, .green,
                  .orange, .blue,
                  .blue, .blue,
-                 .red, .green, .orange]
+                 .red, .green, .orange],
+        isSelected: true
     ),
     PllCase(
         name: "HPerm",
@@ -181,7 +200,8 @@ let pllCases = [
                  .orange, .red,
                  .red, .orange,
                  .orange, .red,
-                 .blue, .green, .blue]
+                 .blue, .green, .blue],
+        isSelected: true
     ),
     PllCase(
         name: "UaPerm",
@@ -190,7 +210,8 @@ let pllCases = [
                  .green, .blue,
                  .green, .red,
                  .green, .blue,
-                 .orange, .blue, .orange]
+                 .orange, .blue, .orange],
+        isSelected: true
     ),
     PllCase(
         name: "UbPerm",
@@ -199,7 +220,8 @@ let pllCases = [
                  .orange, .red,
                  .green, .orange,
                  .orange, .red,
-                 .blue, .blue, .blue]
+                 .blue, .blue, .blue],
+        isSelected: true
     ),
     PllCase(
         name: "ZPerm",
@@ -208,6 +230,7 @@ let pllCases = [
                  .orange, .red,
                  .blue, .green,
                  .orange, .red,
-                 .blue, .orange, .blue]
+                 .blue, .orange, .blue],
+        isSelected: true
     )
 ]

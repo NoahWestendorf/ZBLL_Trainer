@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F32AA472A6AB27A002B24A8 /* PllCasesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F32AA462A6AB27A002B24A8 /* PllCasesListView.swift */; };
+		8F6D072F2B2E1AB20031E825 /* iOSCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D072E2B2E1AB20031E825 /* iOSCheckboxToggleStyle.swift */; };
 		8F780BA42A7CE17A00454FCE /* DrawFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F780BA32A7CE17A00454FCE /* DrawFunctions.swift */; };
 		8F9797A92A4626360011D986 /* ScrambleDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */; };
 		8F9B461E2A6522F300BE6196 /* PllCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9B461D2A6522F300BE6196 /* PllCase.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8F32AA462A6AB27A002B24A8 /* PllCasesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PllCasesListView.swift; sourceTree = "<group>"; };
+		8F6D072E2B2E1AB20031E825 /* iOSCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		8F780BA32A7CE17A00454FCE /* DrawFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawFunctions.swift; sourceTree = "<group>"; };
 		8F9797A82A4626360011D986 /* ScrambleDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambleDescriptionView.swift; sourceTree = "<group>"; };
 		8F9B461D2A6522F300BE6196 /* PllCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PllCase.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				8F9B461D2A6522F300BE6196 /* PllCase.swift */,
 				8F780BA32A7CE17A00454FCE /* DrawFunctions.swift */,
+				8F6D072E2B2E1AB20031E825 /* iOSCheckboxToggleStyle.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -123,7 +126,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					8FC61E4A2A26130C0061D954 = {
 						CreatedOnToolsVersion = 14.3;
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F9B461E2A6522F300BE6196 /* PllCase.swift in Sources */,
+				8F6D072F2B2E1AB20031E825 /* iOSCheckboxToggleStyle.swift in Sources */,
 				8F780BA42A7CE17A00454FCE /* DrawFunctions.swift in Sources */,
 				8FC61E512A26130C0061D954 /* ContentView.swift in Sources */,
 				8F9797A92A4626360011D986 /* ScrambleDescriptionView.swift in Sources */,
@@ -213,6 +217,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -273,6 +278,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
