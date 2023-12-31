@@ -28,6 +28,9 @@ struct ScrambleDescriptionView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title)
                             .fontWeight(.bold)
+                                     
+                        Text("")
+                        
                         
                         Text(pllCase.name)
                             .fontWeight(.bold)
@@ -131,7 +134,8 @@ struct ScrambleDescriptionView_Previews: PreviewProvider {
                  .red, .orange,
                  .red, .orange,
                  .red, .orange,
-                 .green, .green, .green]
+                 .green, .green, .green],
+        isSelected: true
     )
 
     static var previews: some View {

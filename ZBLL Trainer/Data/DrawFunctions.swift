@@ -43,3 +43,5 @@ func drawPllRectangleRight(colorOfRectangle: Color) -> some View {
         .padding(.leading, -10)
         .foregroundColor(colorOfRectangle)
 }
+
+

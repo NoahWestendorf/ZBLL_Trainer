@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct PllCasesListView: View {
-    
-    @State var pllCase = pllCases[0]
+
+    @State var cases = pllCases
     
     var body: some View {
+        
         NavigationView {
             ZStack{
                 
@@ -19,12 +20,15 @@ struct PllCasesListView: View {
                     .ignoresSafeArea()
                 
                 List {
-                    ForEach(0..<21) { currentPllCase in
+
+                    ForEach($cases) { $pllCase in
                         
                         HStack{
                             Text("\(pllCase.name):")
                                 .foregroundColor(.white)
                                 .frame(width: 80)
+                            
+                            Spacer()
                             
                             VStack{
                                 HStack{
@@ -81,14 +85,18 @@ struct PllCasesListView: View {
                                     drawPllRectangleBottom(colorOfRectangle: pllCase.colors[11])
                                 }
                             }
+                            
+                            Spacer()
+                            
+                            Toggle(isOn: $pllCase.isSelected) {
+                                Text("")
+                            }
+                            .toggleStyle(iOSCheckboxToggleStyle())
                         }
                     }
                     .listRowBackground(Color.black)
                 }
                 .scrollContentBackground(.hidden)
-                .background{
-                    Color.black
-                }
             }
         }
     }

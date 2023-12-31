@@ -16,8 +16,8 @@ struct ContentView: View {
     @State var timerColor = Color(uiColor: .white)
     @State private var canTouchDown = true
     @State var timerWasRunning = false
-    @State var previousPllCase = pllCases[20]
-    @State var currentPllCase = pllCases[0]
+    @State var previousPllCase: PllCase = pllCases[0]
+    @State var currentPllCase: PllCase = pllCases[1]
     
     let timer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     let HeldDownTimer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
@@ -41,7 +41,7 @@ struct ContentView: View {
                     .padding(.bottom, -5)
                     .fontWeight(.bold)
                     
-                    NavigationLink {
+                    $currentPllCase != nil ? (NavigationLink {
                         ScrambleDescriptionView(pllCase: $currentPllCase)
                     } label: {
                         Text(currentPllCase.scramble)
@@ -49,7 +49,7 @@ struct ContentView: View {
                             .font(.title)
                             .padding([.top])
                             .multilineTextAlignment(.leading)
-                    }
+                    }) : nil
                     
                     VStack{
                         Spacer()
@@ -74,6 +74,7 @@ struct ContentView: View {
                             
                             Text(String(format: "%.2f", timerCount))
                                 .onReceive(timer) { _ in
+                                    
                                     if (timerIsRunning){
                                         
                                         timerCount += 0.01
@@ -93,6 +94,7 @@ struct ContentView: View {
                             .onChanged{ value in
                                 if canTouchDown{
                                     if (timerIsRunning == true){
+                                        let selectedPllCases = pllCases.filter{ $0.isSelected }
                                         previousPllCase = currentPllCase
                                         currentPllCase = pllCases.randomElement()!
                                         print(currentPllCase.name)
