@@ -16,12 +16,13 @@ struct ContentView: View {
     @State var timerColor = Color(uiColor: .white)
     @State private var canTouchDown = true
     @State var timerWasRunning = false
-    @State var previousPllCase: PllCase = pllCases[0]
-    @State var currentPllCase: PllCase = pllCases[1]
+    @State var previousPllCase: PllCase = emptyPllCase
+    @State var currentPllCase: PllCase = emptyPllCase
     
     let timer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     let HeldDownTimer = Timer.publish(every: 0.01, on: .main, in: .common) .autoconnect()
     
+    @ViewBuilder
     var body: some View {
         
         NavigationView{
@@ -41,7 +42,7 @@ struct ContentView: View {
                     .padding(.bottom, -5)
                     .fontWeight(.bold)
                     
-                    $currentPllCase != nil ? (NavigationLink {
+                    $currentPllCase.colors.count > 0 ? (NavigationLink {
                         ScrambleDescriptionView(pllCase: $currentPllCase)
                     } label: {
                         Text(currentPllCase.scramble)
@@ -127,128 +128,133 @@ struct ContentView: View {
                             }
                     )
                     HStack{
-                        VStack (spacing: 10){
-                            
-                            Text("Previous scramble:")
-                                .fontWeight(.bold)
-                            
-                            HStack{
-                                drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[0])
+                        
+                        if (previousPllCase.colors.count > 0) {
+                            VStack (spacing: 10){
                                 
-                                drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[1])
+                                Text("Previous scramble:")
+                                    .fontWeight(.bold)
                                 
-                                drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[2])
-                                
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[3])
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[4])
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[5])
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[6])
-                                
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[7])
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[8])
-                            }
-                            HStack{
-                                
-                                drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[9])
-                                
-                                drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[10])
-                                
-                                drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[11])
-                                
+                                HStack{
+                                    drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[0])
+                                    
+                                    drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[1])
+                                    
+                                    drawPllRectangleTop(colorOfRectangle: previousPllCase.colors[2])
+                                    
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[3])
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[4])
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[5])
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[6])
+                                    
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleLeft(colorOfRectangle: previousPllCase.colors[7])
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawPllRectangleRight(colorOfRectangle: previousPllCase.colors[8])
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[9])
+                                    
+                                    drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[10])
+                                    
+                                    drawPllRectangleBottom(colorOfRectangle: previousPllCase.colors[11])
+                                    
+                                }
                             }
                         }
                         //Draws the Cube, with way too many rectangles
                         
                         Spacer()
                         
-                        VStack (spacing: 10){
-                            
-                            Text("Current scramble:")
-                                .fontWeight(.bold)
-                            
-                            HStack{
-                                drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[0])
+                        if (currentPllCase.colors.count > 0) {
+                            VStack (spacing: 10){
                                 
-                                drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[1])
+                                Text("Current scramble:")
+                                    .fontWeight(.bold)
                                 
-                                drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[2])
-                                
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[3])
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[4])
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[5])
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[6])
-                                
-                            }
-                            HStack{
-                                
-                                drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[7])
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawOllRectangle(colorOfRectangle: .yellow)
-                                
-                                drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[8])
-                            }
-                            HStack{
-                                
-                                drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[9])
-                                
-                                drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[10])
-                                
-                                drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[11])
-                                
+                                HStack{
+                                    drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[0])
+                                    
+                                    drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[1])
+                                    
+                                    drawPllRectangleTop(colorOfRectangle: currentPllCase.colors[2])
+                                    
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[3])
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[4])
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[5])
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[6])
+                                    
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleLeft(colorOfRectangle: currentPllCase.colors[7])
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawOllRectangle(colorOfRectangle: .yellow)
+                                    
+                                    drawPllRectangleRight(colorOfRectangle: currentPllCase.colors[8])
+                                }
+                                HStack{
+                                    
+                                    drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[9])
+                                    
+                                    drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[10])
+                                    
+                                    drawPllRectangleBottom(colorOfRectangle: currentPllCase.colors[11])
+                                    
+                                }
                             }
                         }
                     }

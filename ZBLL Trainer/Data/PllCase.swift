@@ -21,6 +21,10 @@ class PllCase: Identifiable{
     }
 }
 
+let emptyPllCase: PllCase = PllCase(name: "",
+                                    scramble: "",
+                                    colors: [],
+                                    isSelected: true)
 let pllCases = [
     PllCase(
         name: "AaPerm",
