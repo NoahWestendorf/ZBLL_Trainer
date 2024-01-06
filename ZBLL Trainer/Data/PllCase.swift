@@ -5,7 +5,6 @@
 //  Created by Noah Westendorf on 17.07.23.
 //
 
-//import Foundation
 import SwiftUI
 
 class PllCase: Identifiable{
@@ -234,3 +233,5 @@ let pllCases = [
         isSelected: true
     )
 ]
+
+

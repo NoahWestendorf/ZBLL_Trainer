@@ -90,13 +90,17 @@ struct ContentView: View {
                         Spacer()
                     }
                     .gesture(
-                        DragGesture(minimumDistance:0)
+                        DragGesture(minimumDistance: 0)
                             .onChanged{ value in
                                 if canTouchDown{
                                     if (timerIsRunning == true){
-                                        let selectedPllCases = pllCases.filter{ $0.isSelected }
+                                        let selectedPllCases = pllCases.filter{ $0.isSelected
+                                                // && ["AaPerm", "AbPerm"].contains($0.name)
+                                            
+                                        }
+                                        // print("\(selectedPllCases.count)")
                                         previousPllCase = currentPllCase
-                                        currentPllCase = pllCases.randomElement()!
+                                        currentPllCase = selectedPllCases.randomElement()!
                                         print(currentPllCase.name)
                                         
                                         timerWasRunning = true
